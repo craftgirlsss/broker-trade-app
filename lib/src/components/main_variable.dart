@@ -16,6 +16,9 @@ class GlobalVariablesType extends StatelessWidget{
   // String nama aplikasi
   static String? nameApp = "App Name";
 
+  // ucapan selamat datang untuk login
+  static String ucapanLogin = "Welcome Back!";
+
   // judul di page splash screen
   static String? titleSplashScreen = "Log in to your account";
 
@@ -24,6 +27,9 @@ class GlobalVariablesType extends StatelessWidget{
 
   // Teks Login
   static String? loginText = "LOGIN";
+
+  // Teks lupa password
+  static String? forgotText = "Forgot password?";
 
   // main color button semua screen
   static List<Color>? buttonSquereColor = [
@@ -74,6 +80,7 @@ class GlobalVariablesType extends StatelessWidget{
   static double paddingRight = 20;
   static double paddingTop = 15;
   static double paddingBottom = 0;
+  static EdgeInsets? defaultPadding = const EdgeInsets.only(left: 20, right: 20);
 
   // Spacing sizedbox
   static double height = 5;
@@ -82,5 +89,4 @@ class GlobalVariablesType extends StatelessWidget{
   Widget build(BuildContext context) {
     throw UnimplementedError();
   }
-
 }

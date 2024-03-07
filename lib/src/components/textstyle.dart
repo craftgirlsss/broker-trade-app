@@ -10,12 +10,12 @@ TextStyle kDefaultTextStyleTitleAppBar(){
   );
 }
 
-TextStyle kDefaultTextStyleSubtitleSplashScreen(){
+TextStyle kDefaultTextStyleSubtitleSplashScreen({Color? color}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamily,
     fontSize: GlobalVariablesType.fontSizeTitleBig27,
     fontWeight: FontWeight.normal,
-    color: GlobalVariablesType.buttonSquereColor![0]
+    color: color ?? GlobalVariablesType.buttonSquereColor![0]
   );
 }
 
@@ -28,11 +28,11 @@ TextStyle kDefaultTextStyleButton(){
   );
 }
 
-TextStyle kDefaultTextStyleButtonText(){
+TextStyle kDefaultTextStyleButtonText({Color? color}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamily,
     fontSize: GlobalVariablesType.fontSizeTitleSmall12,
     fontWeight: FontWeight.normal,
-    color: GlobalVariablesType.buttonTextColor![0]
+    color: color ?? GlobalVariablesType.buttonTextColor![0]
   );
 }
