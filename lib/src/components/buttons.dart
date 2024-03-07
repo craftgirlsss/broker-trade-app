@@ -9,7 +9,7 @@ ElevatedButton kDefaultButtonLogin({Function()? onPressed}){
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       backgroundColor: GlobalVariablesType.buttonSquereColor![0],
-      elevation: 1,
+      elevation: 5,
     ), 
     child: Text(GlobalVariablesType.loginText!, style: kDefaultTextStyleButton()));
 }

@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: kDefaultButtonLogin(onPressed: (){
-                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const LoginPage()), (route) => false);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                           })),
                         TextButton(
                           onPressed: () => launchUrls(GlobalVariablesType.termsAndConditions),

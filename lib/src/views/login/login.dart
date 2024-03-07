@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/appbars.dart';
+import 'package:mockup_one/src/components/buttons.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textfields.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/focus_manager.dart';
+import 'package:mockup_one/src/views/mainpage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailContrller = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool? checkBox = false;
+  bool isChecked = false;
   @override
   void dispose() {
     emailContrller.dispose();
@@ -33,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         body: ListView(
           padding: GlobalVariablesType.defaultPadding,
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
             Text(GlobalVariablesType.ucapanLogin, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
             const SizedBox(height: 15),
             UsernameTextFields(
@@ -52,17 +54,18 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
+                  color: Colors.transparent,
                   child: Row(
                     children: [
                       CupertinoCheckbox(
-                        
-                        value: checkBox, 
-                        onChanged: (condition){
+                        activeColor: GlobalVariablesType.buttonTextColor![3],
+                        value: isChecked, 
+                        onChanged: (bool? value){
                           setState(() {
-                            condition = !condition!;
-                            condition = checkBox;
+                            isChecked = value!;
                           });
-                        })
+                        }),
+                        Text(GlobalVariablesType.rememberMeText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),)
                     ],
                   ),
                 ),
@@ -71,7 +74,22 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(GlobalVariablesType.forgotText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),),
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: kDefaultButtonLogin(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage()));
+                },
+              ),
+            ),
+            const SizedBox(height: 17),
+            Center(
+              child: GestureDetector(
+                    onTap: (){},
+                    child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),),
+                  ),
+            ),
           ],
         ),
       ),

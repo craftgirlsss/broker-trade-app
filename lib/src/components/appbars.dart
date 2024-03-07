@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 import 'main_variable.dart';
@@ -20,6 +19,6 @@ AppBar kDefaultAppBarGoBackOnly(context){
       onPressed: (){
         Navigator.pop(context);
       },
-      icon: Image.asset('assets/icons/arrow-back.png')),
+      icon:Icon(Icons.arrow_back_rounded, color: GlobalVariablesType.buttonTextColor![3],)),
   );
 }

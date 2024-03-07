@@ -31,6 +31,12 @@ class GlobalVariablesType extends StatelessWidget{
   // Teks lupa password
   static String? forgotText = "Forgot password?";
 
+  // Teks lupa password
+  static String? rememberMeText = "Remember me";
+
+  // Teks buat akun
+  static String? buatAkunText = "Don't have account? Create now";
+
   // main color button semua screen
   static List<Color>? buttonSquereColor = [
     Colors.green.shade400.withOpacity(0.9),
