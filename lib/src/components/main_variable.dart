@@ -19,6 +19,9 @@ class GlobalVariablesType extends StatelessWidget{
   // ucapan selamat datang untuk login
   static String ucapanLogin = "Welcome Back!";
 
+  // ucapan selamat datang untuk login
+  static String ucapanSignUP = "Register Now!";
+
   // judul di page splash screen
   static String? titleSplashScreen = "Log in to your account";
 
@@ -28,11 +31,17 @@ class GlobalVariablesType extends StatelessWidget{
   // Teks Login
   static String? loginText = "LOGIN";
 
+  // Teks SignUp
+  static String? signUpText = "REGISTER";
+
   // Teks lupa password
   static String? forgotText = "Forgot password?";
 
   // Teks lupa password
   static String? rememberMeText = "Remember me";
+
+  // Teks agreement
+  static String? agreeText = "I agree with conditions";
 
   // Teks buat akun
   static String? buatAkunText = "Don't have account? Create now";
@@ -46,8 +55,9 @@ class GlobalVariablesType extends StatelessWidget{
   // Elevation
   static double? elevation = 0;
 
+  // Font Family
   static String fontFamily = "Inter";
-  
+  static String fontFamilyBold = "Inter-ExtraBold";
   // fontSize
   static double fontSizeTitleSmall12 = 12;
   static double fontSizeTitleMedium14 = 14;

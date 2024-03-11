@@ -3,7 +3,7 @@ import 'package:mockup_one/src/components/main_variable.dart';
 
 import 'textstyle.dart';
 
-ElevatedButton kDefaultButtonLogin({Function()? onPressed}){
+ElevatedButton kDefaultButtonLogin({Function()? onPressed, String? title}){
   return ElevatedButton(
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
@@ -11,5 +11,5 @@ ElevatedButton kDefaultButtonLogin({Function()? onPressed}){
       backgroundColor: GlobalVariablesType.buttonSquereColor![0],
       elevation: 5,
     ), 
-    child: Text(GlobalVariablesType.loginText!, style: kDefaultTextStyleButton()));
+    child: Text(title ?? GlobalVariablesType.loginText!, style: kDefaultTextStyleButton()));
 }

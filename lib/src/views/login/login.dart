@@ -8,6 +8,8 @@ import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/focus_manager.dart';
 import 'package:mockup_one/src/views/mainpage.dart';
 
+import 'create.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -86,7 +88,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 17),
             Center(
               child: GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
+                    },
                     child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),),
                   ),
             ),
