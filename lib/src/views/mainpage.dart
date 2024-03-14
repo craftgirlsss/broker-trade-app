@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/views/dashboard/homepage.dart';
 
+import 'profiles/profiles.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -21,9 +23,7 @@ class _MainPageState extends State<MainPage> {
     Text(
       'Index 2: School',
     ),
-    Text(
-      'Index 3: Settings',
-    ),
+    ProfilePage()
   ];
 
   void _onItemTapped(int index) {
@@ -57,12 +57,11 @@ class _MainPageState extends State<MainPage> {
             label: 'Transactions',
           ),
           BottomNavigationBarItem(
-            activeIcon: Image.asset('assets/icons/settings-blue.png'),
-            icon: Image.asset('assets/icons/settings-grey.png'),
-            label: 'Settings',
+            activeIcon: Icon(CupertinoIcons.profile_circled, color: Colors.blue.shade700),
+            icon: Icon(CupertinoIcons.profile_circled, color: Colors.grey.shade400),
+            label: 'Profiles',
           ),
         ],
-        
         currentIndex: _selectedIndex,
         unselectedItemColor: Colors.black38,
         type: BottomNavigationBarType.fixed,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 
-TextStyle kDefaultTextStyleTitleAppBar({double? fontSize}){
+TextStyle kDefaultTextStyleTitleAppBar({double? fontSize, FontWeight? fontWeight}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamily,
     fontSize: fontSize ?? GlobalVariablesType.fontSizeTitleMedium14,
-    fontWeight: FontWeight.bold,
+    fontWeight: fontWeight ?? FontWeight.bold,
     color: GlobalVariablesType.colorTextBlack[0]
   );
 }
@@ -37,11 +37,11 @@ TextStyle kDefaultTextStyleButton(){
   );
 }
 
-TextStyle kDefaultTextStyleButtonText({Color? color}){
+TextStyle kDefaultTextStyleButtonText({Color? color, FontWeight? fontWeight}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamily,
     fontSize: GlobalVariablesType.fontSizeTitleSmall12,
-    fontWeight: FontWeight.normal,
+    fontWeight: fontWeight ?? FontWeight.normal,
     color: color ?? GlobalVariablesType.buttonTextColor![0]
   );
 }

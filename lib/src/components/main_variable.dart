@@ -20,6 +20,9 @@ class GlobalVariablesType extends StatelessWidget{
   static String ucapanLogin = "Welcome Back!";
 
   // ucapan selamat datang untuk login
+  static String showProfile = "Show Profile";
+
+  // ucapan selamat datang untuk login
   static String ucapanSignUP = "Register Now!";
 
   // judul di page splash screen
@@ -96,7 +99,7 @@ class GlobalVariablesType extends StatelessWidget{
   static double paddingRight = 20;
   static double paddingTop = 15;
   static double paddingBottom = 0;
-  static EdgeInsets? defaultPadding = const EdgeInsets.only(left: 20, right: 20);
+  static EdgeInsets? defaultPadding = const EdgeInsets.only(left: 15, right: 15);
 
   // Spacing sizedbox
   static double height = 5;

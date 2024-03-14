@@ -35,14 +35,14 @@ class _CardPortofolioState extends State<CardPortofolio> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(0),
       color: Colors.transparent,
       width: MediaQuery.of(context).size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Portofilio", style: kDefaultTextStyleTitleAppBar(fontSize: 16)),
+          Text("Balance", style: kDefaultTextStyleTitleAppBar(fontSize: 16)),
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width - 100,
@@ -52,7 +52,7 @@ class _CardPortofolioState extends State<CardPortofolio> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(width: 26),
-                  Text(formatCurrencyUs.format(10000), style: kDefaultTextStyleTitleAppBarBold(fontSize: 40,)),
+                  Text(isView == true ? "****" : formatCurrencyUs.format(293), style: kDefaultTextStyleTitleAppBarBold(fontSize: 40,)),
                   IconButton(
                     onPressed: (){
                       setState(() {
@@ -114,10 +114,23 @@ class _CardPortofolioState extends State<CardPortofolio> {
               plotAreaBorderWidth: 0,
               crosshairBehavior: CrosshairBehavior(enable: false, ),
               trackballBehavior: _trackballBehavior,
+              indicators: [
+                SmaIndicator<dynamic, dynamic>(
+                  seriesName: 'HiloOpenClose',
+                  period: 4,
+                  signalLineWidth: 0.9, 
+                  valueField: 'close'),
+                SmaIndicator<dynamic, dynamic>(
+                  seriesName: 'HiloOpenClose',
+                  period: 9,
+                  signalLineColor: Colors.red,
+                  signalLineWidth: 0.9, 
+                  valueField: 'close'),
+              ],
               series: <CandleSeries>[
                 CandleSeries<ChartSampleData, DateTime>(
                     dataSource: _chartData,
-                    name: 'EURUSD',
+                    name: 'HiloOpenClose',
                     enableSolidCandles: false,
                     xValueMapper: (ChartSampleData sales, _) => sales.x,
                     lowValueMapper: (ChartSampleData sales, _) => sales.low,
@@ -164,11 +177,20 @@ class _CardPortofolioState extends State<CardPortofolio> {
                       borderRadius: BorderRadius.circular(5),
                       color: GlobalVariablesType.buttonTextColor![3],
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("BUY", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19)),
-                        Icon(CupertinoIcons.arrow_up_right, color: Colors.white)
+                        Container(
+                          color: Colors.transparent,
+                          child: Row(
+                            children: [
+                              const Text("BUY", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19)),
+                              const SizedBox(width: 3),
+                              Text("119.83", style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 15))
+                            ],
+                          ),
+                        ),
+                        const Icon(CupertinoIcons.arrow_up_right, color: Colors.white)
                       ],
                     ),
                   ),
@@ -185,11 +207,20 @@ class _CardPortofolioState extends State<CardPortofolio> {
                       borderRadius: BorderRadius.circular(5),
                       color: Colors.red,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("SELL", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19)),
-                        Icon(CupertinoIcons.arrow_down_right, color: Colors.white)
+                        Container(
+                          color: Colors.transparent,
+                          child:  Row(
+                            children: [
+                              const Text("SELL", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19)),
+                              const SizedBox(width: 3),
+                              Text("119.83", style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 15))
+                            ],
+                          ),
+                        ),
+                        const Icon(CupertinoIcons.arrow_down_right, color: Colors.white)
                       ],
                     ),
                   ),
@@ -243,7 +274,7 @@ class _CardPortofolioState extends State<CardPortofolio> {
       ChartSampleData(
           x: DateTime(2016, 02, 22),
           open: 96.31,
-          high: 98.0237,
+          high: 87.0237,
           low: 98.0237,
           close: 96.31),
       ChartSampleData(
@@ -486,6 +517,30 @@ class _CardPortofolioState extends State<CardPortofolio> {
           high: 112.465,
           low: 108.85,
           close: 109.9),
+      ChartSampleData(
+          x: DateTime(2016, 12, 05),
+          open: 110,
+          high: 114.7,
+          low: 108.25,
+          close: 113.95),
+      ChartSampleData(
+          x: DateTime(2016, 12, 12),
+          open: 113.29,
+          high: 116.73,
+          low: 112.49,
+          close: 115.97),
+      ChartSampleData(
+          x: DateTime(2016, 12, 19),
+          open: 115.8,
+          high: 117.5,
+          low: 115.59,
+          close: 116.52),
+      ChartSampleData(
+          x: DateTime(2016, 12, 26),
+          open: 116.52,
+          high: 118.0166,
+          low: 115.43,
+          close: 115.82),
       ChartSampleData(
           x: DateTime(2016, 12, 05),
           open: 110,
