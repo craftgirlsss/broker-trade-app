@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mockup_one/src/components/alerts.dart';
 import 'package:mockup_one/src/components/appbars.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
+
+import 'change_password.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -59,10 +63,12 @@ class _ProfilePageState extends State<ProfilePage> {
             hasLeading: false,
             children: [
               CupertinoListTile(
-                onTap: (){},
+                onTap: (){
+                  Get.to(() => const ChangePasswordPage());
+                },
                 trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.person_circle),
-                title: const Text("Personal Information")),
+                leading: const Icon(CupertinoIcons.pencil_ellipsis_rectangle),
+                title: const Text("Change Password")),
               CupertinoListTile(
                 onTap: (){},
                 trailing: const Icon(Icons.keyboard_arrow_right_rounded),
@@ -84,7 +90,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: const Icon(CupertinoIcons.exclamationmark_bubble),
                 title: const Text("Need help?")),
               CupertinoListTile(
-                onTap: (){},
+                onTap: (){
+                  alertDialogSignOut(context);
+                },
                 trailing: const Icon(Icons.keyboard_arrow_right_rounded),
                 leading: const Icon(CupertinoIcons.rectangle_expand_vertical),
                 title: const Text("Sign Out")),

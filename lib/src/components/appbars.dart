@@ -13,8 +13,10 @@ AppBar kDefaultAppBarTitle({String? title, double? fontSize, bool? centerTitle})
   );
 }
 
-AppBar kDefaultAppBarGoBackOnly(context){
+AppBar kDefaultAppBarGoBackOnly(context, {String? title}){
   return AppBar(
+    title: Text(title ?? '', style: kDefaultTextStyleCustom(color: Colors.green.shade400, fontSize: 15, fontWeight: FontWeight.bold),),
+    centerTitle: true,
     elevation: GlobalVariablesType.elevation,
     backgroundColor: GlobalVariablesType.backgroundColor,
     leading: IconButton(

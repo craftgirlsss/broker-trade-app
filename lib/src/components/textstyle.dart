@@ -10,6 +10,15 @@ TextStyle kDefaultTextStyleTitleAppBar({double? fontSize, FontWeight? fontWeight
   );
 }
 
+TextStyle kDefaultTextStyleCustom({double? fontSize, FontWeight? fontWeight, Color? color}){
+  return TextStyle(
+    fontFamily: GlobalVariablesType.fontFamily,
+    fontSize: fontSize ?? GlobalVariablesType.fontSizeTitleMedium14,
+    fontWeight: fontWeight ?? FontWeight.bold,
+    color: color ?? GlobalVariablesType.colorTextBlack[0]
+  );
+}
+
 TextStyle kDefaultTextStyleTitleAppBarBold({double? fontSize}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamilyBold,
