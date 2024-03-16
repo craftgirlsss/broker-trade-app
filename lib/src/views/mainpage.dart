@@ -4,6 +4,7 @@ import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/views/dashboard/homepage.dart';
 
 import 'profiles/profiles.dart';
+import 'transactions/transaction.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -20,9 +21,7 @@ class _MainPageState extends State<MainPage> {
     Text(
       'Index 1: Business',
     ),
-    Text(
-      'Index 2: School',
-    ),
+    Transactions(),
     ProfilePage()
   ];
 
