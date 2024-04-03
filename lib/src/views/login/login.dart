@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mockup_one/src/components/appbars.dart';
 import 'package:mockup_one/src/components/buttons.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textfields.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/focus_manager.dart';
+import 'package:mockup_one/src/views/login/forgot.dart';
 import 'package:mockup_one/src/views/mainpage.dart';
 
 import 'create.dart';
@@ -72,7 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    Get.to(() => const ForgotPassword());
+                  },
                   child: Text(GlobalVariablesType.forgotText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),),
                 ),
               ],

@@ -18,6 +18,7 @@ class _CardPortofolioState extends State<CardPortofolio> {
   late List<ChartSampleData> _chartData;
   late TrackballBehavior _trackballBehavior;
   late ZoomPanBehavior _zoomPanBehavior;
+  bool candleStickView = true;
 
   @override
   void initState() {
@@ -66,6 +67,7 @@ class _CardPortofolioState extends State<CardPortofolio> {
             ),
           ),
           Container(
+            width: MediaQuery.of(context).size.width,
             color: Colors.transparent,
             margin: const EdgeInsets.all(10),
             child: Row(
@@ -105,7 +107,54 @@ class _CardPortofolioState extends State<CardPortofolio> {
             ),
           ),
           Text("Favorit : EURUSD", style: kDefaultTextStyleTitleAppBar(fontSize: 15),),
+          const SizedBox(height: 10),          
           Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      candleStickView = true;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: candleStickView ? Colors.green.shade100 : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.green.shade400
+                      )
+                    ),
+                    child: const Text("Candle Stick"),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      candleStickView = false;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: candleStickView == false ? Colors.green.shade100 : Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.green.shade400
+                      )
+                    ),
+                    child: const Text("Line"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+         Container(
             width: MediaQuery.of(context).size.width,
             height: 250,
             color: Colors.transparent,
@@ -169,12 +218,12 @@ class _CardPortofolioState extends State<CardPortofolio> {
                   borderRadius: BorderRadius.circular(10),
                   onTap: (){},
                   child: Container(
-                    height: 70,
-                    width: 150,
+                    // height: 70,
+                    // width: 150,
                     margin: const EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(8),
                       color: GlobalVariablesType.buttonTextColor![3],
                     ),
                     child: Row(
@@ -199,12 +248,10 @@ class _CardPortofolioState extends State<CardPortofolio> {
                   borderRadius: BorderRadius.circular(10),
                   onTap: (){},
                   child: Container(
-                    height: 70,
-                    width: 150,
                     margin: const EdgeInsets.all(10),
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(8),
                       color: Colors.red,
                     ),
                     child: Row(

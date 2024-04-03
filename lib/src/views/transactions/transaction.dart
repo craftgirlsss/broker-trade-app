@@ -76,7 +76,6 @@ class _TransactionsState extends State<Transactions> {
                 SliverPersistentHeader(
                   delegate: _SliverAppBarDelegate(
                    TabBar(
-                    
                     indicatorColor: GlobalVariablesType.buttonTextColor![1],
                       indicatorSize: TabBarIndicatorSize.tab,
                       labelColor: Colors.black87,
