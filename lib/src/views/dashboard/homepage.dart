@@ -5,6 +5,7 @@ import 'package:mockup_one/src/components/appbars.dart';
 import 'package:mockup_one/src/components/card_portofolio.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
+import 'package:mockup_one/src/views/dashboard/market_details.dart';
 
 import 'notification_page.dart';
 
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
                     physics: const ScrollPhysics(),
                     itemCount: 5,
                     itemBuilder: (context, index) => ListTile(
+                      onTap: () => Get.to(() => const MarketDetails(title: "EURUSD")),
                       title: Text("EURO / USD", style: kDefaultTextStyleTitleAppBar(fontSize: 15)),
                       subtitle: Text("EURUSD", style: kDefaultTextStyleTitleAppBar(fontSize: 13, fontWeight: FontWeight.normal)),
                       leading: Image.asset('assets/icons/flags/eurusd.png', width: 55),

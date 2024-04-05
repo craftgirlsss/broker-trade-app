@@ -12,7 +12,7 @@ class UsernameTextFields extends StatefulWidget {
 }
 
 class _UsernameTextFieldsState extends State<UsernameTextFields> {
-  bool? isEmail;
+  bool? isEmail = false;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -20,30 +20,30 @@ class _UsernameTextFieldsState extends State<UsernameTextFields> {
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
-        labelStyle: TextStyle(color: GlobalVariablesType.buttonTextColor![3]),
+        labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
         hintStyle: const TextStyle(color: Colors.black38),
         filled: false,
         suffix: AnimatedContainer(
           duration: const Duration(milliseconds: 500), 
           padding: const EdgeInsets.all(2),
           decoration:  BoxDecoration(
-            color: isEmail == false ? Colors.red : GlobalVariablesType.buttonSquereColor![0],
+            color: isEmail == false ? Colors.red : GlobalVariablesType.mainColor,
             shape: BoxShape.circle),
           child: isEmail == false ? const Icon(Icons.close, color: Colors.white, size: 16) : const Icon(Icons.done, color: Colors.white, size: 16),    
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: GlobalVariablesType.borderLineTextFieldColor![0]
+            color: GlobalVariablesType.mainColor
           )
         ),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: GlobalVariablesType.borderLineTextFieldColor![0]
+            color: GlobalVariablesType.mainColor
           )
         ),
         border: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: GlobalVariablesType.borderLineTextFieldColor![0]
+            color: GlobalVariablesType.mainColor
           )
         )
        ),
@@ -96,7 +96,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
-        labelStyle: TextStyle(color: GlobalVariablesType.buttonTextColor![3]),
+        labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
         hintStyle: const TextStyle(color: Colors.black38),
         filled: false,
         suffix: GestureDetector(
@@ -109,17 +109,17 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: isEightCharacter == false ? Colors.red : GlobalVariablesType.borderLineTextFieldColor![0]
+            color: isEightCharacter == false ? Colors.red : GlobalVariablesType.mainColor
           )
         ),
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: isEightCharacter == false ? Colors.red : GlobalVariablesType.borderLineTextFieldColor![0]
+            color: isEightCharacter == false ? Colors.red : GlobalVariablesType.mainColor
           )
         ),
         border: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: isEightCharacter == false ? Colors.red : GlobalVariablesType.borderLineTextFieldColor![0]
+            color: isEightCharacter == false ? Colors.red : GlobalVariablesType.mainColor
           )
         )
        ),
@@ -135,5 +135,141 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           }
        },
     );
+  }
+}
+
+
+class PhoneTextField extends StatefulWidget {
+  final String? hintText;
+  final String? labelText;
+  final TextEditingController? controller;
+  const PhoneTextField({super.key, this.hintText, this.labelText, this.controller});
+
+  @override
+  State<PhoneTextField> createState() => _PhoneTextFieldState();
+}
+
+class _PhoneTextFieldState extends State<PhoneTextField> {
+  bool? isPhone = false;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+       controller: widget.controller,
+       keyboardType: TextInputType.phone,
+       decoration: InputDecoration(
+        hintText: widget.hintText,
+        labelText: widget.labelText,
+        labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
+        hintStyle: const TextStyle(color: Colors.black38),
+        filled: false,
+        suffix: AnimatedContainer(
+          duration: const Duration(milliseconds: 500), 
+          padding: const EdgeInsets.all(2),
+          decoration:  BoxDecoration(
+            color: isPhone == false ? Colors.red : GlobalVariablesType.mainColor,
+            shape: BoxShape.circle),
+          child: isPhone == false ? const Icon(Icons.close, color: Colors.white, size: 16) : const Icon(Icons.done, color: Colors.white, size: 16),    
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        )
+       ),
+       onChanged: (value) {
+          validatePhone(value.length);
+       },
+    );
+  }
+
+  bool? validatePhone(int length) {
+    if(length > 10){
+      setState(() {
+        isPhone = true;
+      });
+    }else{
+      setState(() {
+        isPhone = false;
+      });
+    }
+    return isPhone;
+  }
+}
+
+
+class NameTextField extends StatefulWidget {
+  final String? hintText;
+  final String? labelText;
+  final TextEditingController? controller;
+  const NameTextField({super.key, this.hintText, this.labelText, this.controller});
+
+  @override
+  State<NameTextField> createState() => _NameTextFieldState();
+}
+
+class _NameTextFieldState extends State<NameTextField> {
+  bool? isName = false;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+       controller: widget.controller,
+       keyboardType: TextInputType.name,
+       decoration: InputDecoration(
+        hintText: widget.hintText,
+        labelText: widget.labelText,
+        labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
+        hintStyle: const TextStyle(color: Colors.black38),
+        filled: false,
+        suffix: AnimatedContainer(
+          duration: const Duration(milliseconds: 500), 
+          padding: const EdgeInsets.all(2),
+          decoration:  BoxDecoration(
+            color: isName == false ? Colors.red : GlobalVariablesType.mainColor,
+            shape: BoxShape.circle),
+          child: isName == false ? const Icon(Icons.close, color: Colors.white, size: 16) : const Icon(Icons.done, color: Colors.white, size: 16),    
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        )
+       ),
+       onChanged: (value) {
+          validateName(value);
+       },
+    );
+  }
+
+  bool? validateName(String value) {
+    if(RegExp(r"\s").hasMatch(value)){
+      setState(() {
+        isName = true;
+      });
+    }else{
+      setState(() {
+        isName = false;
+      });
+    }
+    return isName;
   }
 }

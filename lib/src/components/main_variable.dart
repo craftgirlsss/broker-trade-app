@@ -34,6 +34,9 @@ class GlobalVariablesType extends StatelessWidget{
   // Teks Login
   static String? loginText = "LOGIN";
 
+  // Teks Submit
+  static String? submitText = "CONFIRM";
+
   // Teks SignUp
   static String? signUpText = "REGISTER";
 
@@ -49,9 +52,11 @@ class GlobalVariablesType extends StatelessWidget{
   // Teks buat akun
   static String? buatAkunText = "Don't have account? Create now";
 
+  static Color mainColor = Colors.orange.withOpacity(0.9);
+
   // main color button semua screen
   static List<Color>? buttonSquereColor = [
-    Colors.green.shade400.withOpacity(0.9),
+    Colors.orange.withOpacity(0.9),
     Colors.blue.shade400,
   ];
 
@@ -72,12 +77,12 @@ class GlobalVariablesType extends StatelessWidget{
     Colors.black54,
     CupertinoColors.activeBlue,
     Colors.white,
-    Colors.green.shade400,
+    Colors.orange.shade400,
   ];
 
   // main color text borderLineTextField semua screen
   static List<Color>? borderLineTextFieldColor = [
-    Colors.green.shade400,
+    Colors.orange.shade400,
     CupertinoColors.activeBlue,
   ];
   

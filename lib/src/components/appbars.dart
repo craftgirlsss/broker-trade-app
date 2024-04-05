@@ -13,9 +13,27 @@ AppBar kDefaultAppBarTitle({String? title, double? fontSize, bool? centerTitle})
   );
 }
 
+AppBar kDefaultAppBarCustom(context,{
+  List<Widget>? actions,
+  Widget? title, double? fontSize, bool? centerTitle}){
+  return AppBar(
+    elevation: GlobalVariablesType.elevation,
+    centerTitle: centerTitle ?? false,
+    backgroundColor: GlobalVariablesType.backgroundColor,
+    leading: Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: IconButton(onPressed: (){
+        Navigator.pop(context);
+      }, icon: Icon(CupertinoIcons.back, color: GlobalVariablesType.mainColor,)),
+    ),
+    title: title,
+    actions: actions,
+  );
+}
+
 AppBar kDefaultAppBarGoBackOnly(context, {String? title}){
   return AppBar(
-    title: Text(title ?? '', style: kDefaultTextStyleCustom(color: Colors.green.shade400, fontSize: 15, fontWeight: FontWeight.bold),),
+    title: Text(title ?? '', style: kDefaultTextStyleCustom(color: GlobalVariablesType.mainColor, fontSize: 15, fontWeight: FontWeight.bold),),
     centerTitle: true,
     elevation: GlobalVariablesType.elevation,
     backgroundColor: GlobalVariablesType.backgroundColor,
@@ -23,7 +41,7 @@ AppBar kDefaultAppBarGoBackOnly(context, {String? title}){
       onPressed: (){
         Navigator.pop(context);
       },
-      icon:Icon(Icons.arrow_back_rounded, color: GlobalVariablesType.buttonTextColor![3],)),
+      icon:Icon(Icons.arrow_back_rounded, color: GlobalVariablesType.mainColor,)),
   );
 }
 
@@ -145,22 +163,22 @@ AppBar appBarHomePage(context, {String? name, String? urlPhoto, Function()? onPr
                 icon: Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.14),
+                    color: GlobalVariablesType.mainColor.withOpacity(0.14),
                     shape: BoxShape.circle
                   ),
                   child: Icon(CupertinoIcons.bell_solid, 
-                  color: GlobalVariablesType.buttonTextColor![1],),
+                  color: GlobalVariablesType.mainColor,),
                 ),
             ),
           availableNotofication ? Positioned(
-            right: 12,
-            top: 12,
+            right: 7,
+            top: 7,
             child: Container(
               width: 10,
               height: 10,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red,
+                color: Colors.green.shade300,
               ),
             ),
           ) : Container()

@@ -33,7 +33,7 @@ TextStyle kDefaultTextStyleSubtitleSplashScreen({Color? color}){
     fontFamily: GlobalVariablesType.fontFamily,
     fontSize: GlobalVariablesType.fontSizeTitleBig27,
     fontWeight: FontWeight.normal,
-    color: color ?? GlobalVariablesType.buttonSquereColor![0]
+    color: color ?? GlobalVariablesType.mainColor
   );
 }
 

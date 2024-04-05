@@ -34,13 +34,14 @@ class _LoginPageState extends State<LoginPage> {
     return GestureDetector(
       onTap: () => focusManager(),
       child: Scaffold(
+        extendBodyBehindAppBar: false,
         backgroundColor: GlobalVariablesType.backgroundColor,
         appBar: kDefaultAppBarGoBackOnly(context),
         body: ListView(
           padding: GlobalVariablesType.defaultPadding,
           children: [
             const SizedBox(height: 20),
-            Text(GlobalVariablesType.ucapanLogin, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
+            Text(GlobalVariablesType.loginText!, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
             const SizedBox(height: 15),
             UsernameTextFields(
               hintText: "Input your email",
@@ -62,14 +63,14 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(
                     children: [
                       CupertinoCheckbox(
-                        activeColor: GlobalVariablesType.buttonTextColor![3],
+                        activeColor: GlobalVariablesType.mainColor,
                         value: isChecked, 
                         onChanged: (bool? value){
                           setState(() {
                             isChecked = value!;
                           });
                         }),
-                        Text(GlobalVariablesType.rememberMeText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),)
+                        Text(GlobalVariablesType.rememberMeText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.mainColor),)
                     ],
                   ),
                 ),
@@ -77,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   onTap: (){
                     Get.to(() => const ForgotPassword());
                   },
-                  child: Text(GlobalVariablesType.forgotText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),),
+                  child: Text(GlobalVariablesType.forgotText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.mainColor),),
                 ),
               ],
             ),
@@ -95,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
                     },
-                    child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),),
+                    child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.mainColor),),
                   ),
             ),
           ],

@@ -40,11 +40,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               labelText: "Email",
               controller: emailContrller,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: kDefaultButtonLogin(
-                title: GlobalVariablesType.signUpText,
+                title: GlobalVariablesType.submitText,
                 onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage()));
                 },

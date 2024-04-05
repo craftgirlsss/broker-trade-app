@@ -34,6 +34,7 @@ class _SignUpState extends State<SignUp> {
     return GestureDetector(
       onTap: () => focusManager(),
       child: Scaffold(
+        extendBodyBehindAppBar: false,
         backgroundColor: GlobalVariablesType.backgroundColor,
         appBar: kDefaultAppBarGoBackOnly(context),
         body: ListView(
@@ -42,13 +43,13 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(height: 20),
             Text(GlobalVariablesType.ucapanSignUP, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
             const SizedBox(height: 15),
-            UsernameTextFields(
+            NameTextField(
               hintText: "Input your name",
-              labelText: "Name",
+              labelText: "Full Name",
               controller: namaContrller,
             ),
             const SizedBox(height: 15),
-            UsernameTextFields(
+            PhoneTextField(
               hintText: "Input your phone",
               labelText: "Phone",
               controller: noHPController,
