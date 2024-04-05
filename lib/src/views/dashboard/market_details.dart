@@ -18,7 +18,7 @@ class MarketDetails extends StatefulWidget {
 }
 
 class _MarketDetailsState extends State<MarketDetails> {
-
+  TextEditingController lotsController = TextEditingController();
   late List<ChartSampleData> _chartData;
   late TrackballBehavior _trackballBehavior;
   late ZoomPanBehavior _zoomPanBehavior;
@@ -26,13 +26,20 @@ class _MarketDetailsState extends State<MarketDetails> {
 
   @override
   void initState() {
+    lotsController.text = "0.10";
     _chartData = getChartData();
     _zoomPanBehavior = ZoomPanBehavior(
-      enableMouseWheelZooming : true, 
-      maximumZoomLevel: 0.3,
+      // enableMouseWheelZooming: true,
+      enableDoubleTapZooming: true,
       enablePinching: true,
-      zoomMode: ZoomMode.x,
-      enablePanning: true,);
+      enableSelectionZooming: true,
+      selectionRectBorderColor: Colors.red,
+      selectionRectBorderWidth: 1,
+      // selectionRectColor: Colors.grey,
+      // maximumZoomLevel: 0.3,
+      // zoomMode: ZoomMode.xy,
+      enablePanning: true,
+      );
     _trackballBehavior = TrackballBehavior(
         enable: true, activationMode: ActivationMode.singleTap);
     super.initState();
@@ -47,6 +54,7 @@ class _MarketDetailsState extends State<MarketDetails> {
         appBar: kDefaultAppBarCustom(
           context,
           title: Container(
+            color: Colors.transparent,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +117,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                                 borderRadius: BorderRadius.circular(5),
                                 color: GlobalVariablesType.mainColor.withOpacity(0.1)
                               ),
-                              child: Text("M1"),
+                              child: const Text("M1"),
                             )
                           ],
                         ),
@@ -164,6 +172,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                 height: MediaQuery.of(context).size.height / 1.8,
                 color: Colors.transparent,
                 child: SfCartesianChart(
+                  legend: Legend(isVisible: true),
                   zoomPanBehavior: _zoomPanBehavior,
                   plotAreaBorderWidth: 0,
                   crosshairBehavior: CrosshairBehavior(enable: true),
@@ -195,21 +204,23 @@ class _MarketDetailsState extends State<MarketDetails> {
                     primaryXAxis: DateTimeAxis(
                       enableAutoIntervalOnZooming: true,
                       dateFormat: DateFormat.yMMMd(),
+                      interval: 1,
                       majorGridLines: const MajorGridLines(
-                        dashArray: <double>[7,7],
-                        width: 1)),
+                        // dashArray: <double>[7,7],
+                        width: 1),
+                        ),
                     enableAxisAnimation: true,
                     borderColor: Colors.white,
                     borderWidth: 0,
                     primaryYAxis:  NumericAxis(
-                      numberFormat: NumberFormat.simpleCurrency(),
+                      numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
                       opposedPosition: true,
                       edgeLabelPlacement: EdgeLabelPlacement.shift,
                       minimum: 80,
                       maximum: 130,
                       interval: 10,
                       majorGridLines: const MajorGridLines(
-                       dashArray: <double>[7,7], 
+                      //  dashArray: <double>[7,7], 
                         width: 0.8)
                     // numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
                     ),
@@ -217,6 +228,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                 ),
                 // button and pending order
                 Container(
+                  color: Colors.transparent,
                   child: Column(
                     children: [
                       Container(
@@ -265,7 +277,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.only(right: 10),
                               width: MediaQuery.of(context).size.width / 4,
                               height: 70,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(40),
                                   topRight: Radius.circular(6),
@@ -295,14 +307,24 @@ class _MarketDetailsState extends State<MarketDetails> {
                                 children: [
                                   IconButton(onPressed: (){}, icon: const Icon(Icons.remove)),
                                   Expanded(
-                                    child: Column(
-                                    children: [
-                                      Text("LOTS"),
-                                      TextField(
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ],
-                                  )),
+                                    child: Column(                                      
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const Text("LOTS"),
+                                        TextField(
+                                          textAlign: TextAlign.center,
+                                          cursorHeight: 25,
+                                          cursorRadius: const Radius.circular(5),
+                                          cursorColor: Colors.black,
+                                          style: kDefaultTextStyleCustom(fontSize: 15,),
+                                          controller: lotsController,
+                                          decoration: const InputDecoration(
+                                            border: InputBorder.none
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   IconButton(onPressed: (){}, icon: const Icon(Icons.add)),
                                 ],
                               ),
@@ -311,7 +333,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.only(left: 10),
                               width: MediaQuery.of(context).size.width / 4,
                               height: 70,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(40),
                                   topLeft: Radius.circular(6),
