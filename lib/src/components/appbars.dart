@@ -89,7 +89,7 @@ class _AppBarHomePageState extends State<AppBarHomePage> {
               setState(() {
                 counter = counter + 1;
               });
-              print(counter);
+              // print(counter);
             }, 
             icon: Container(
               padding: const EdgeInsets.all(6),
@@ -136,6 +136,7 @@ AppBar appBarHomePage(context, {String? name, String? urlPhoto, Function()? onPr
     surfaceTintColor: Colors.transparent,
     backgroundColor: GlobalVariablesType.backgroundColor,
     leadingWidth: 60,
+    elevation: 0,
     leading: Padding(
       padding: const EdgeInsets.only(left: 12),
       child: GestureDetector(

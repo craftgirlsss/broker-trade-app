@@ -8,9 +8,8 @@ import 'package:mockup_one/src/components/textfields.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/focus_manager.dart';
 import 'package:mockup_one/src/views/login/forgot.dart';
+import 'package:mockup_one/src/views/login/sign_up.dart';
 import 'package:mockup_one/src/views/mainpage.dart';
-
-import 'create.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -41,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: GlobalVariablesType.defaultPadding,
           children: [
             const SizedBox(height: 20),
-            Text(GlobalVariablesType.loginText!, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
+            Text("LOGIN", style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
             const SizedBox(height: 15),
             UsernameTextFields(
               hintText: "Input your email",
@@ -94,9 +93,9 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPages()));
                     },
-                    child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.mainColor),),
+                    child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleCustom(color: GlobalVariablesType.mainColor, fontWeight: FontWeight.normal),),
                   ),
             ),
           ],

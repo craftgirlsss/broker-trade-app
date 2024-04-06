@@ -7,6 +7,7 @@ import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 
 import 'change_password.dart';
+import 'detail_profile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -36,6 +37,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               elevation: 1,
               child: ListTile(
+                onTap: (){
+                  Get.to(() => const DetailProfile());
+                },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)
                 ),

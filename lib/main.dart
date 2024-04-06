@@ -16,8 +16,11 @@ class MyApp extends StatelessWidget {
       title: 'Mockup Trading App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+        color:  Colors.white,
+      ),
         colorScheme: ColorScheme.fromSeed(seedColor: GlobalVariablesType.buttonTextColor![1]),
-        useMaterial3: true,
+        useMaterial3: false,
       ),
       home: const SplashScreen(),
     );

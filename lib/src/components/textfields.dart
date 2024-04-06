@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
+import 'package:mockup_one/src/helpers/email_validator.dart';
 
 class UsernameTextFields extends StatefulWidget {
   final String? hintText;
@@ -48,31 +49,20 @@ class _UsernameTextFieldsState extends State<UsernameTextFields> {
         )
        ),
        onChanged: (value) {
-          validateEmailBool(value: value);
+          if(validateEmailBool(value) == true){
+            setState(() {
+              isEmail = true;
+            });
+          }else{
+            setState(() {
+              isEmail = false;
+            });
+          }
        },
     );
   }
 
-  bool? validateEmailBool({String? value}) {
-    const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
-    final regex = RegExp(pattern);
-    if(!regex.hasMatch(value!)){
-      setState(() {
-        isEmail = false;
-      });
-    }else{
-      setState(() {
-        isEmail = true;
-      });
-    }
-    return isEmail;
-  }
+  
 }
 
 class PasswordTextField extends StatefulWidget {
@@ -261,7 +251,87 @@ class _NameTextFieldState extends State<NameTextField> {
   }
 
   bool? validateName(String value) {
-    if(RegExp(r"\s").hasMatch(value)){
+    if(value.length > 2){
+      setState(() {
+        isName = true;
+      });
+    }else{
+      setState(() {
+        isName = false;
+      });
+    }
+    // if(RegExp(r"\s").hasMatch(value)){
+    //   setState(() {
+    //     isName = true;
+    //   });
+    // }else{
+    //   setState(() {
+    //     isName = false;
+    //   });
+    // }
+    return isName;
+  }
+}
+
+
+class TextEditingOptionSelect extends StatefulWidget {
+  final String? hintText;
+  final String? labelText;
+  final Function()? onTap;
+  final TextEditingController? controller;
+  const TextEditingOptionSelect({super.key, this.hintText, this.labelText, this.controller, this.onTap});
+
+  @override
+  State<TextEditingOptionSelect> createState() => _TextEditingOptionSelectState();
+}
+
+class _TextEditingOptionSelectState extends State<TextEditingOptionSelect> {
+  bool? isName = false;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+       readOnly: true,
+       controller: widget.controller,
+       keyboardType: TextInputType.name,
+       onTap: widget.onTap,
+       decoration: InputDecoration(
+        hintText: widget.hintText,
+        labelText: widget.labelText,
+        labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
+        hintStyle: const TextStyle(color: Colors.black38),
+        filled: false,
+        // suffix: AnimatedContainer(
+        //   duration: const Duration(milliseconds: 500), 
+        //   padding: const EdgeInsets.all(2),
+        //   decoration:  BoxDecoration(
+        //     color: isName == false ? Colors.red : GlobalVariablesType.mainColor,
+        //     shape: BoxShape.circle),
+        //   child: isName == false ? const Icon(Icons.close, color: Colors.white, size: 16) : const Icon(Icons.done, color: Colors.white, size: 16),    
+        // ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        )
+       ),
+       onChanged: (value) {
+          validateName(value);
+       },
+    );
+  }
+
+  bool? validateName(String value) {
+    if(value.isNotEmpty){
       setState(() {
         isName = true;
       });

@@ -22,8 +22,11 @@ class GlobalVariablesType extends StatelessWidget{
   // ucapan selamat datang untuk login
   static String showProfile = "Show Profile";
 
+  // ucapan profilku
+  static String profileku = "Accounts Detail";
+
   // ucapan selamat datang untuk login
-  static String ucapanSignUP = "Register Now!";
+  static String ucapanSignUP = "Finish Register";
 
   // judul di page splash screen
   static String? titleSplashScreen = "Log in to your account";
@@ -32,10 +35,10 @@ class GlobalVariablesType extends StatelessWidget{
   static String? descriptionSplashScreen = "Trading Forex be easly with MBTC";
 
   // Teks Login
-  static String? loginText = "LOGIN";
+  static String? loginText = "L O G I N";
 
   // Teks Submit
-  static String? submitText = "CONFIRM";
+  static String? submitText = "C O N F I R M";
 
   // Teks SignUp
   static String? signUpText = "REGISTER";
@@ -52,7 +55,7 @@ class GlobalVariablesType extends StatelessWidget{
   // Teks buat akun
   static String? buatAkunText = "Don't have account? Create now";
 
-  static Color mainColor = Colors.orange.withOpacity(0.9);
+  static Color mainColor = const Color.fromRGBO(255,215,0, 1);
 
   // main color button semua screen
   static List<Color>? buttonSquereColor = [

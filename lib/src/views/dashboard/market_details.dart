@@ -172,7 +172,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                 height: MediaQuery.of(context).size.height / 1.8,
                 color: Colors.transparent,
                 child: SfCartesianChart(
-                  legend: Legend(isVisible: true),
+                  legend: const Legend(isVisible: true),
                   zoomPanBehavior: _zoomPanBehavior,
                   plotAreaBorderWidth: 0,
                   crosshairBehavior: CrosshairBehavior(enable: true),
@@ -191,7 +191,14 @@ class _MarketDetailsState extends State<MarketDetails> {
                       valueField: 'close'),
                   ],
                   series: <CandleSeries>[
+                    
                     CandleSeries<ChartSampleData, DateTime>(
+                      trendlines: [
+                        Trendline(
+                          type: TrendlineType.linear,
+                          
+                        )
+                      ],
                         dataSource: _chartData,
                         name: 'HiloOpenClose',
                         enableSolidCandles: true,
