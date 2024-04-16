@@ -8,7 +8,7 @@ import 'package:mockup_one/src/components/textfields.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/focus_manager.dart';
 import 'package:mockup_one/src/views/login/forgot.dart';
-import 'package:mockup_one/src/views/login/sign_up.dart';
+import 'package:mockup_one/src/views/login/register_v2.dart';
 import 'package:mockup_one/src/views/mainpage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: GlobalVariablesType.defaultPadding,
           children: [
             const SizedBox(height: 20),
-            Text("LOGIN", style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
+            Text("LOGIN", style: kDefaultTextStyleSubtitleSplashScreen(color: GlobalVariablesType.mainTextColor)),
             const SizedBox(height: 15),
             UsernameTextFields(
               hintText: "Input your email",
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPages()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterAccountV2()));
                     },
                     child: Text(GlobalVariablesType.buatAkunText!, style: kDefaultTextStyleCustom(color: GlobalVariablesType.mainColor, fontWeight: FontWeight.normal),),
                   ),

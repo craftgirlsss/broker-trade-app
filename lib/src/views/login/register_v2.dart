@@ -1,39 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:mockup_one/src/components/appbars.dart';
 import 'package:mockup_one/src/components/buttons.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textfields.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/focus_manager.dart';
-import 'package:mockup_one/src/views/login/login.dart';
+import 'package:mockup_one/src/helpers/url_launchers.dart';
+import 'package:mockup_one/src/views/login/otp.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class RegisterAccountV2 extends StatefulWidget {
+  const RegisterAccountV2({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<RegisterAccountV2> createState() => _RegisterAccountV2State();
 }
 
-class _SignUpState extends State<SignUp> {
+class _RegisterAccountV2State extends State<RegisterAccountV2> {
+  bool isChecked = false;
   TextEditingController emailContrller = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController firstNameContrller = TextEditingController();
-  TextEditingController lastNameContrller = TextEditingController();
-  TextEditingController noHPController = TextEditingController();
-  TextEditingController birthDateController = TextEditingController();
-  bool isChecked = false;
+  TextEditingController nameController = TextEditingController();
   @override
   void dispose() {
     emailContrller.dispose();
     passwordController.dispose();
-    firstNameContrller.dispose();
-    lastNameContrller.dispose();
-    noHPController.dispose();
-    confirmPasswordController.dispose();
+    nameController.dispose();
     super.dispose();
   }
   @override
@@ -48,46 +42,18 @@ class _SignUpState extends State<SignUp> {
           padding: GlobalVariablesType.defaultPadding,
           children: [
             const SizedBox(height: 20),
-            Text(GlobalVariablesType.ucapanSignUP, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
+            Text("Register", style: kDefaultTextStyleSubtitleSplashScreen()),
             const SizedBox(height: 15),
             NameTextField(
               hintText: "Input your name",
-              labelText: "First Name",
-              controller: firstNameContrller,
-            ),
-            const SizedBox(height: 15),
-            const SizedBox(height: 15),
-            NameTextField(
-              hintText: "Input your name",
-              labelText: "Last Name",
-              controller: lastNameContrller,
+              labelText: "Full Name",
+              controller: nameController,
             ),
             const SizedBox(height: 15),
             UsernameTextFields(
               hintText: "Input your email",
               labelText: "Email",
               controller: emailContrller,
-            ),
-            const SizedBox(height: 15),
-            TextEditingOptionSelect(
-              controller: birthDateController,
-              labelText: "Birth Date",
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime(2000), //get today's date
-                  firstDate:DateTime(1960), //DateTime.now() - not to allow to choose before today.
-                  lastDate: DateTime.now()
-                );
-                if(pickedDate != null ){                      
-                  String formattedDate = DateFormat('dd-MM-yyyy').format(pickedDate); // format date in required form here we use yyyy-MM-dd that means time is removed
-                  setState(() {
-                      birthDateController.text = formattedDate; //set foratted date to TextField value. 
-                  });
-                }else{
-                    Get.snackbar("Failed", "Please choose your birthdate");
-                }
-              },
             ),
             const SizedBox(height: 15),
             PasswordTextField(
@@ -117,7 +83,11 @@ class _SignUpState extends State<SignUp> {
                             isChecked = value!;
                           });
                         }),
-                        Text(GlobalVariablesType.agreeText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.buttonTextColor![3]),)
+                        GestureDetector(
+                          onTap: (){
+                            launchUrls(GlobalVariablesType.termsAndConditions);
+                          },
+                          child: Text(GlobalVariablesType.agreeText!, style: kDefaultTextStyleButtonText(color: GlobalVariablesType.mainColor),))
                     ],
                   ),
                 ),
@@ -129,7 +99,7 @@ class _SignUpState extends State<SignUp> {
               child: kDefaultButtonLogin(
                 title: GlobalVariablesType.signUpText,
                 onPressed: (){
-                  Get.offAll(() => const LoginPage());
+                  Get.to(() => const OTPPage());
                 },
               ),
             ),

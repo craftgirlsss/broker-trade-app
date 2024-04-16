@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
+import 'package:mockup_one/src/components/textstyle.dart';
 import 'package:mockup_one/src/helpers/email_validator.dart';
 
 class UsernameTextFields extends StatefulWidget {
@@ -18,11 +19,13 @@ class _UsernameTextFieldsState extends State<UsernameTextFields> {
   Widget build(BuildContext context) {
     return TextFormField(
        controller: widget.controller,
+       style: kDefaultTextStyleCustom(fontSize: 13),
+       keyboardAppearance: Brightness.dark,
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
         labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
-        hintStyle: const TextStyle(color: Colors.black38),
+        hintStyle: TextStyle(color: GlobalVariablesType.mainTextColor.withOpacity(0.7), fontSize: GlobalVariablesType.defaultFontSize),
         filled: false,
         suffix: AnimatedContainer(
           duration: const Duration(milliseconds: 500), 
@@ -61,8 +64,6 @@ class _UsernameTextFieldsState extends State<UsernameTextFields> {
        },
     );
   }
-
-  
 }
 
 class PasswordTextField extends StatefulWidget {
@@ -83,11 +84,13 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     return TextFormField(
        controller: widget.controller,
        obscureText: obscureText,
+       keyboardAppearance: Brightness.dark,
+       style: kDefaultTextStyleCustom(fontSize: 13),
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
         labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
-        hintStyle: const TextStyle(color: Colors.black38),
+        hintStyle: TextStyle(color: GlobalVariablesType.mainTextColor.withOpacity(0.7), fontSize: GlobalVariablesType.defaultFontSize),
         filled: false,
         suffix: GestureDetector(
           onTap: (){
@@ -146,11 +149,13 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
     return TextFormField(
        controller: widget.controller,
        keyboardType: TextInputType.phone,
+       keyboardAppearance: Brightness.dark,
+       style: kDefaultTextStyleCustom(fontSize: 13),
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
         labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
-        hintStyle: const TextStyle(color: Colors.black38),
+        hintStyle: TextStyle(color: GlobalVariablesType.mainTextColor.withOpacity(0.7), fontSize: GlobalVariablesType.defaultFontSize),
         filled: false,
         suffix: AnimatedContainer(
           duration: const Duration(milliseconds: 500), 
@@ -214,11 +219,13 @@ class _NameTextFieldState extends State<NameTextField> {
     return TextFormField(
        controller: widget.controller,
        keyboardType: TextInputType.name,
+       keyboardAppearance: Brightness.dark,
+       style: kDefaultTextStyleCustom(fontSize: 13),
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
         labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
-        hintStyle: const TextStyle(color: Colors.black38),
+        hintStyle: TextStyle(color: GlobalVariablesType.mainTextColor.withOpacity(0.7), fontSize: GlobalVariablesType.defaultFontSize),
         filled: false,
         suffix: AnimatedContainer(
           duration: const Duration(milliseconds: 500), 
@@ -292,13 +299,15 @@ class _TextEditingOptionSelectState extends State<TextEditingOptionSelect> {
     return TextFormField(
        readOnly: true,
        controller: widget.controller,
+       keyboardAppearance: Brightness.dark,
+       style: kDefaultTextStyleCustom(fontSize: 13),
        keyboardType: TextInputType.name,
        onTap: widget.onTap,
        decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,
         labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
-        hintStyle: const TextStyle(color: Colors.black38),
+        hintStyle: TextStyle(color: GlobalVariablesType.mainTextColor.withOpacity(0.7), fontSize: GlobalVariablesType.defaultFontSize),
         filled: false,
         // suffix: AnimatedContainer(
         //   duration: const Duration(milliseconds: 500), 
@@ -341,5 +350,55 @@ class _TextEditingOptionSelectState extends State<TextEditingOptionSelect> {
       });
     }
     return isName;
+  }
+}
+
+
+class AnyTextField extends StatefulWidget {
+  final String? hintText;
+  final String? labelText;
+  final bool? withLength;
+  final int? maxLength;
+  final TextInputType? textInputType;
+  final TextEditingController? controller;
+  const AnyTextField({super.key, this.hintText, this.labelText, this.controller, this.textInputType, this.withLength, this.maxLength});
+
+  @override
+  State<AnyTextField> createState() => _AnyTextFieldState();
+}
+
+class _AnyTextFieldState extends State<AnyTextField> {
+  bool? isName = false;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      maxLength: widget.withLength == true ? widget.maxLength : null,
+       controller: widget.controller,
+       keyboardType: widget.textInputType,
+       keyboardAppearance: Brightness.dark,
+       style: kDefaultTextStyleCustom(fontSize: 13),
+       decoration: InputDecoration(
+        hintText: widget.hintText,
+        labelText: widget.labelText,
+        labelStyle: TextStyle(color: GlobalVariablesType.mainColor),
+        hintStyle: TextStyle(color: GlobalVariablesType.mainTextColor.withOpacity(0.7), fontSize: GlobalVariablesType.defaultFontSize),
+        filled: false,
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: GlobalVariablesType.mainColor
+          )
+        )
+       ),
+    );
   }
 }

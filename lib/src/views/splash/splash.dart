@@ -37,8 +37,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       children: [
                         const SizedBox(height: 20),
                         Text(GlobalVariablesType.titleSplashScreen!, style: kDefaultTextStyleTitleAppBar()),
+                        const SizedBox(height: 5),
                         SizedBox(height: GlobalVariablesType.height),
-                        Text(GlobalVariablesType.descriptionSplashScreen!, style: kDefaultTextStyleSubtitleSplashScreen()),
+                        Text(GlobalVariablesType.descriptionSplashScreen!, style: kDefaultTextStyleSubtitleSplashScreen(color: GlobalVariablesType.mainColor)),
                         const SizedBox(height: 20),
                         Image.asset('assets/images/splash-image.png')
                       ],

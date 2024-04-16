@@ -32,7 +32,7 @@ class GlobalVariablesType extends StatelessWidget{
   static String? titleSplashScreen = "Log in to your account";
 
   // deskripsi di page splashscreen
-  static String? descriptionSplashScreen = "Trading Forex be easly with MBTC";
+  static String? descriptionSplashScreen = "Trading Forex be easly with GIFX";
 
   // Teks Login
   static String? loginText = "L O G I N";
@@ -56,6 +56,10 @@ class GlobalVariablesType extends StatelessWidget{
   static String? buatAkunText = "Don't have account? Create now";
 
   static Color mainColor = const Color.fromRGBO(255,215,0, 1);
+
+  static Color mainTextColor = Colors.white;
+
+  static double defaultFontSize = 11;
 
   // main color button semua screen
   static List<Color>? buttonSquereColor = [
@@ -90,11 +94,11 @@ class GlobalVariablesType extends StatelessWidget{
   ];
   
   // BackgroundColor all page
-  static Color? backgroundColor = Colors.white;
+  static Color? backgroundColor = Colors.black;
   
   // Color of text black
   static List<Color?> colorTextBlack = [
-    Colors.black,
+    Colors.white,
     Colors.black54,
     Colors.black38
   ];

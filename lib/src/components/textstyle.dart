@@ -4,7 +4,7 @@ import 'package:mockup_one/src/components/main_variable.dart';
 TextStyle kDefaultTextStyleTitleAppBar({double? fontSize, FontWeight? fontWeight}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamily,
-    fontSize: fontSize ?? GlobalVariablesType.fontSizeTitleMedium14,
+    fontSize: fontSize ?? GlobalVariablesType.defaultFontSize,
     fontWeight: fontWeight ?? FontWeight.bold,
     color: GlobalVariablesType.colorTextBlack[0]
   );
@@ -13,16 +13,16 @@ TextStyle kDefaultTextStyleTitleAppBar({double? fontSize, FontWeight? fontWeight
 TextStyle kDefaultTextStyleCustom({double? fontSize, FontWeight? fontWeight, Color? color}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamily,
-    fontSize: fontSize ?? GlobalVariablesType.fontSizeTitleMedium14,
+    fontSize: fontSize ?? GlobalVariablesType.defaultFontSize,
     fontWeight: fontWeight ?? FontWeight.bold,
-    color: color ?? GlobalVariablesType.colorTextBlack[0]
+    color: color ?? GlobalVariablesType.mainTextColor
   );
 }
 
 TextStyle kDefaultTextStyleTitleAppBarBold({double? fontSize}){
   return TextStyle(
     fontFamily: GlobalVariablesType.fontFamilyBold,
-    fontSize: fontSize ?? GlobalVariablesType.fontSizeTitleMedium14,
+    fontSize: fontSize ?? GlobalVariablesType.defaultFontSize,
     fontWeight: FontWeight.bold,
     color: GlobalVariablesType.colorTextBlack[0]
   );
@@ -33,7 +33,7 @@ TextStyle kDefaultTextStyleSubtitleSplashScreen({Color? color}){
     fontFamily: GlobalVariablesType.fontFamily,
     fontSize: GlobalVariablesType.fontSizeTitleBig27,
     fontWeight: FontWeight.normal,
-    color: color ?? GlobalVariablesType.mainColor
+    color: color ?? GlobalVariablesType.mainTextColor
   );
 }
 
