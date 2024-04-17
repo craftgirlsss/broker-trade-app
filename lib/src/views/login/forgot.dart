@@ -33,7 +33,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           padding: GlobalVariablesType.defaultPadding,
           children: [
             const SizedBox(height: 20),
-            Text(GlobalVariablesType.forgotText!, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.black87)),
+            Text(GlobalVariablesType.forgotText!, style: kDefaultTextStyleSubtitleSplashScreen(color: Colors.white)),
+            const SizedBox(height: 10),
+            Text("Input your email which registered on this platform, we will send password change request to your email", style: kDefaultTextStyleCustom()),
             const SizedBox(height: 15),
             UsernameTextFields(
               hintText: "Input your email",

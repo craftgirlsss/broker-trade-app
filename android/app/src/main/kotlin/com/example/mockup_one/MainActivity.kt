@@ -1,4 +1,4 @@
-package com.example.mockup_one
+package com.behance.behance_one
 
 import io.flutter.embedding.android.FlutterActivity
 

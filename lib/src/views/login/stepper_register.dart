@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mockup_one/src/components/action_sheet.dart';
@@ -342,7 +341,8 @@ class _StepperPageRegisterState extends State<StepperPageRegister> {
         isActive: activeCurrentStep >= 2,
         title: Text('Confirm', style: kDefaultTextStyleCustom(color: Colors.black)),
         content: Container(
-            child: Column(
+          color: Colors.transparent,
+            child: const Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

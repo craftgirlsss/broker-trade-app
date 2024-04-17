@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mockup_one/src/components/action_sheet.dart';
 import 'package:mockup_one/src/components/appbars.dart';
 import 'package:mockup_one/src/components/buttons.dart';
@@ -17,12 +20,32 @@ class DetailProfile extends StatefulWidget {
 
 class _DetailProfileState extends State<DetailProfile> {
   TextEditingController nameController = TextEditingController();
+  TextEditingController accountIDController = TextEditingController();
+  TextEditingController demoAccountIDController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  // Image Picker from gallery
+  XFile? _imageFile;
+  Future<void> pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _imageFile = pickedFile;
+    });
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: focusManager,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: GlobalVariablesType.backgroundColor,
         appBar: kDefaultAppBarGoBackOnly(context, title: GlobalVariablesType.profileku),
         body: SingleChildScrollView(
           padding: GlobalVariablesType.defaultPadding,
@@ -45,7 +68,7 @@ class _DetailProfileState extends State<DetailProfile> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.black.withOpacity(0.05),                      
-                          image: const DecorationImage(image: AssetImage('assets/images/default-picture.png'), fit: BoxFit.cover)
+                          image: _imageFile == null ? const DecorationImage(image: AssetImage('assets/images/empty_image.png'), fit: BoxFit.cover) : DecorationImage(image: FileImage(File(_imageFile!.path)), fit: BoxFit.cover)
                         ),
                       ),
                       Positioned(
@@ -53,7 +76,7 @@ class _DetailProfileState extends State<DetailProfile> {
                         right: 0,
                         child: GestureDetector(
                           onTap: (){
-                            debugPrint("Ditekan");
+                            pickImage();
                           },
                           child: Container(
                             padding: const EdgeInsets.all(8),
@@ -68,43 +91,53 @@ class _DetailProfileState extends State<DetailProfile> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text("Saputra Budianto", textAlign: TextAlign.center, style: kDefaultTextStyleCustom(fontSize: 18, fontWeight: FontWeight.bold)),
-                const Text("nextjies@icloud.com", textAlign: TextAlign.center),
+                const SizedBox(height: 15),
+                Text("Saputra Budianto", textAlign: TextAlign.center, style: kDefaultTextStyleCustom(fontSize: 16, fontWeight: FontWeight.bold)),
+                Text("nextjies@icloud.com", textAlign: TextAlign.center, style: kDefaultTextStyleCustom(color: Colors.white, fontWeight: FontWeight.normal),),
                 const SizedBox(height: 20),
                 NameTextField(
                   controller: nameController,
-                  hintText: "First Name",  
+                  hintText: "Account ID",  
                 ),
                 NameTextField(
                   controller: nameController,
-                  hintText: "Last Name",  
+                  hintText: "Demo Account ID",  
+                ),
+                NameTextField(
+                  controller: nameController,
+                  hintText: "Full Name",  
                 ),
                 PhoneTextField(
                   controller: nameController,
                   hintText: "Phone",  
                 ),
                 TextEditingOptionSelect(
-                  
-                  controller: nameController,
                   hintText: "Select Gender",
-                  onTap: (){
-                    showCupertinoActionSheet(context, 
-                    message: "Choose your gender",
-                    title: "Gender",
+                  controller: genderController,
+                  onTap: () => showCupertinoActionSheet(
+                    context, 
                     cupertinoActionSheet: [
                       CupertinoActionSheetAction(
                         onPressed: (){
+                          setState(() {
+                            genderController.text = "Male";
+                          });
                           Navigator.pop(context);
                         }, 
-                        child: const Text("Laki - Laki")),
+                        child: const Text("Male")
+                      ),
                       CupertinoActionSheetAction(
                         onPressed: (){
+                          setState(() {
+                            genderController.text = "Female";
+                          });
                           Navigator.pop(context);
-                        },
-                        child: const Text("Perempuan")),
-                    ]);
-                  },
+                        }, 
+                        child: const Text("Female")
+                      ),
+                  ],
+                  message: "Choose Your Gender",
+                  title: "Gender"),
                 ),
                 const SizedBox(height: 20),
                 SizedBox(

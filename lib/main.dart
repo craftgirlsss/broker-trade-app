@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/views/splash/splash.dart';
@@ -12,17 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Mockup Trading App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-        color:  Colors.white,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.black
       ),
-        colorScheme: ColorScheme.fromSeed(seedColor: GlobalVariablesType.buttonTextColor![1]),
-        useMaterial3: false,
+      child: GetMaterialApp(
+        title: 'Mockup Trading App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+          color:  Colors.white,
+        ),
+          colorScheme: ColorScheme.fromSeed(seedColor: GlobalVariablesType.buttonTextColor![1]),
+          useMaterial3: false,
+        ),
+        home: const SplashScreen(),
       ),
-      home: const SplashScreen(),
     );
   }
 }

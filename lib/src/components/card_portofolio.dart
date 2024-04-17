@@ -25,11 +25,17 @@ class _CardPortofolioState extends State<CardPortofolio> {
   void initState() {
     _chartData = getChartData();
     _zoomPanBehavior = ZoomPanBehavior(
-      enableMouseWheelZooming : true, 
-      maximumZoomLevel: 0.3,
+      // enableMouseWheelZooming: true,
+      enableDoubleTapZooming: true,
       enablePinching: true,
-      zoomMode: ZoomMode.x,
-      enablePanning: true,);
+      enableSelectionZooming: true,
+      selectionRectBorderColor: Colors.red,
+      selectionRectBorderWidth: 1,
+      // selectionRectColor: Colors.grey,
+      // maximumZoomLevel: 0.3,
+      // zoomMode: ZoomMode.xy,
+      enablePanning: true,
+      );
     _trackballBehavior = TrackballBehavior(
         enable: true, activationMode: ActivationMode.singleTap);
     super.initState();
@@ -62,7 +68,7 @@ class _CardPortofolioState extends State<CardPortofolio> {
                         isView = !isView!;
                       });
                     }, 
-                    icon: isView == true ? const Icon(CupertinoIcons.eye, size: 20) : const Icon(CupertinoIcons.eye_slash_fill, size: 20),
+                    icon: isView == true ? const Icon(CupertinoIcons.eye, size: 20, color: Colors.white,) : const Icon(CupertinoIcons.eye_slash_fill, size: 20, color: Colors.white,),
                   ),
                 ],
               ),
@@ -157,57 +163,67 @@ class _CardPortofolioState extends State<CardPortofolio> {
             ),
           ),
          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 250,
-            color: Colors.transparent,
-            child: SfCartesianChart(
-              zoomPanBehavior: _zoomPanBehavior,
-              plotAreaBorderWidth: 0,
-              crosshairBehavior: CrosshairBehavior(enable: false, ),
-              trackballBehavior: _trackballBehavior,
-              indicators: [
-                SmaIndicator<dynamic, dynamic>(
-                  seriesName: 'HiloOpenClose',
-                  period: 4,
-                  signalLineWidth: 0.9, 
-                  valueField: 'close'),
-                SmaIndicator<dynamic, dynamic>(
-                  seriesName: 'HiloOpenClose',
-                  period: 9,
-                  signalLineColor: Colors.red,
-                  signalLineWidth: 0.9, 
-                  valueField: 'close'),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height / 2,
+          color: Colors.transparent,
+          child: SfCartesianChart(
+            legend: Legend(isVisible: true, textStyle: kDefaultTextStyleCustom()),
+            zoomPanBehavior: _zoomPanBehavior,
+            plotAreaBorderWidth: 0,
+            crosshairBehavior: CrosshairBehavior(enable: true),
+            trackballBehavior: _trackballBehavior,
+            indicators: [
+              SmaIndicator<dynamic, dynamic>(
+                seriesName: 'HiloOpenClose',
+                period: 4,
+                signalLineWidth: 0.9, 
+                valueField: 'close'),
+              SmaIndicator<dynamic, dynamic>(
+                seriesName: 'HiloOpenClose',
+                period: 9,
+                signalLineColor: Colors.red,
+                signalLineWidth: 0.9, 
+                valueField: 'close'),
+            ],
+            series: <CandleSeries>[
+              CandleSeries<ChartSampleData, DateTime>(
+                // trendlines: [
+                //   Trendline(
+                //     type: TrendlineType.linear,
+                //   )
+                // ],
+                  dataSource: _chartData,
+                  name: 'HiloOpenClose',
+                  enableSolidCandles: true,
+                  xValueMapper: (ChartSampleData sales, _) => sales.x,
+                  lowValueMapper: (ChartSampleData sales, _) => sales.low,
+                  highValueMapper: (ChartSampleData sales, _) => sales.high,
+                  openValueMapper: (ChartSampleData sales, _) => sales.open,
+                  closeValueMapper: (ChartSampleData sales, _) => sales.close)
               ],
-              series: <CandleSeries>[
-                CandleSeries<ChartSampleData, DateTime>(
-                    dataSource: _chartData,
-                    name: 'HiloOpenClose',
-                    enableSolidCandles: false,
-                    xValueMapper: (ChartSampleData sales, _) => sales.x,
-                    lowValueMapper: (ChartSampleData sales, _) => sales.low,
-                    highValueMapper: (ChartSampleData sales, _) => sales.high,
-                    openValueMapper: (ChartSampleData sales, _) => sales.open,
-                    closeValueMapper: (ChartSampleData sales, _) => sales.close)
-                ],
-                primaryXAxis: DateTimeAxis(
-                  enableAutoIntervalOnZooming: false,
-                  dateFormat: DateFormat.yMMMd(),
-                  majorGridLines: const MajorGridLines(width: 0)),
-                enableAxisAnimation: true,
-                borderColor: Colors.white,
-                borderWidth: 0,
-                primaryYAxis:  NumericAxis(
-                  numberFormat: NumberFormat.simpleCurrency(),
-                  opposedPosition: true,
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  minimum: 80,
-                  maximum: 130,
-                  interval: 10,
-                  majorGridLines: const MajorGridLines(
-                   dashArray: <double>[7,7], 
-                    width: 0.8)
-                // numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
+              primaryXAxis: DateTimeAxis(
+                enableAutoIntervalOnZooming: true,
+                dateFormat: DateFormat.yMMMd(),
+                interval: 1,
+                majorGridLines: const MajorGridLines(
+                  dashArray: <double>[7,7],
+                  width: 0.2),
                 ),
+              enableAxisAnimation: true,
+              // borderColor: Colors.white.withOpacity(0.4),
+              borderWidth: 0,
+              primaryYAxis:  NumericAxis(
+                numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
+                opposedPosition: true,
+                edgeLabelPlacement: EdgeLabelPlacement.shift,
+                minimum: 80,
+                maximum: 130,
+                interval: 10,
+                majorGridLines: const MajorGridLines(
+                  dashArray: <double>[7,7], 
+                  width: 0.2)
+              // numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
+              ),
             ),
           ),
           Container(

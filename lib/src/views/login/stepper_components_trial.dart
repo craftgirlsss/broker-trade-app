@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
+import 'package:mockup_one/src/components/textstyle.dart';
 
 class NumberStepper extends StatelessWidget {
   final double? width;
@@ -9,6 +10,7 @@ class NumberStepper extends StatelessWidget {
   final Color? currentStepColor;
   final Color? inactiveColor;
   final double? lineWidth;
+  final List<String>? nameStep;
   NumberStepper({
     super.key,
     this.width,
@@ -17,7 +19,7 @@ class NumberStepper extends StatelessWidget {
     this.totalSteps,
     this.inactiveColor,
     this.currentStepColor,
-    this.lineWidth,
+    this.lineWidth, this.nameStep,
   }) : assert(curStep! > 0 == true && curStep <= totalSteps! + 1);
 
   @override
@@ -77,28 +79,38 @@ class NumberStepper extends StatelessWidget {
 
       // step circles
       list.add(
-        Container(
-          width: 28.0,
-          height: 28.0,
-          decoration: BoxDecoration(
-            color: circleColor,
-            borderRadius: const BorderRadius.all(Radius.circular(25.0)),
-            border: Border.all(
-              color: borderColor,
-              width: 1.0,
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: 28.0,
+              height: 28.0,
+              decoration: BoxDecoration(
+                color: circleColor,
+                borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                border: Border.all(
+                  color: borderColor,
+                  width: 1.0,
+                ),
+              ),
+              child: getInnerElementOfStepper(i),
             ),
-          ),
-          child: getInnerElementOfStepper(i),
+            const SizedBox(height: 5),
+            Text(nameStep![i], textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.clip, style: kDefaultTextStyleCustom(color: Colors.white),)
+          ],
         ),
       );
-
+      list.add(const SizedBox(height: 5));
       //line between step circles
       if (i != totalSteps! - 1) {
         list.add(
           Expanded(
             child: Container(
               height: lineWidth,
-              color: lineColor,
+              decoration: BoxDecoration(
+                color: lineColor,
+                borderRadius: BorderRadius.circular(5)
+              ),
             ),
           ),
         );

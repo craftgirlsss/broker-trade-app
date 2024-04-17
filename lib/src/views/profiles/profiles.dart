@@ -51,57 +51,62 @@ class _ProfilePageState extends State<ProfilePage> {
                     image: DecorationImage(image: AssetImage('assets/images/default-picture.png'))
                   ),
                 ),
-                title: Text("Saputra Budianto", style: kDefaultTextStyleTitleAppBar(fontSize: 17)),
+                title: Text("Saputra Budianto", style: kDefaultTextStyleCustom(fontSize: 17, color: Colors.black)),
                 subtitle: Text(GlobalVariablesType.showProfile, style: kDefaultTextStyleButtonText(color: Colors.black54),),
                 trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 20), 
               ),
             ),
-            const SizedBox(height: 20),
-            CupertinoListSection(
+            CupertinoListSection.insetGrouped(
               backgroundColor: Colors.transparent,
-            additionalDividerMargin: 0,
-            margin: const EdgeInsets.all(0),
-            topMargin: 0,
-            header: Text("Account settings", 
-              style: kDefaultTextStyleTitleAppBarBold(fontSize: 19)),
-            hasLeading: false,
-            children: [
-              CupertinoListTile(
-                onTap: (){
-                  Get.to(() => const ChangePasswordPage());
-                },
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.pencil_ellipsis_rectangle),
-                title: const Text("Change Password")),
-              CupertinoListTile(
-                onTap: (){},
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.tray_arrow_down),
-                title: const Text("Deposit")),
-              CupertinoListTile(
-                onTap: (){},
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.tray_arrow_up),
-                title: const Text("Withdraw")),
-              CupertinoListTile(
-                onTap: (){},
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.lock_shield),
-                title: const Text("Privacy and Policy")),
-              CupertinoListTile(
-                onTap: (){},
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.exclamationmark_bubble),
-                title: const Text("Need help?")),
-              CupertinoListTile(
-                onTap: (){
-                  alertDialogSignOut(context);
-                },
-                trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                leading: const Icon(CupertinoIcons.rectangle_expand_vertical),
-                title: const Text("Sign Out")),
-            ],
-          ),
+              additionalDividerMargin: 0,
+              margin: const EdgeInsets.all(0),
+              topMargin: 0,
+              header: Text("Account settings", 
+                style: kDefaultTextStyleTitleAppBarBold(fontSize: 19)),
+              hasLeading: false,
+              children: [
+                CupertinoListTile.notched(
+                  // backgroundColor: GlobalVariablesType.backgroundColor!.withOpacity(0.7),
+                  onTap: (){
+                    Get.to(() => const ChangePasswordPage());
+                  },
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded,),
+                  leading: const Icon(CupertinoIcons.pencil_ellipsis_rectangle),
+                  title: const Text("Change Password")),
+                CupertinoListTile.notched(
+                  // backgroundColor: GlobalVariablesType.backgroundColor!.withOpacity(0.7),
+                  onTap: (){},
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                  leading: const Icon(CupertinoIcons.tray_arrow_down),
+                  title: const Text("Deposit")),
+                CupertinoListTile.notched(
+                  // backgroundColor: GlobalVariablesType.backgroundColor!.withOpacity(0.7),
+                  onTap: (){},
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                  leading: const Icon(CupertinoIcons.tray_arrow_up),
+                  title: const Text("Withdraw")),
+                CupertinoListTile.notched(
+                  // backgroundColor: GlobalVariablesType.backgroundColor!.withOpacity(0.7),
+                  onTap: (){},
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                  leading: const Icon(CupertinoIcons.lock_shield),
+                  title: const Text("Privacy and Policy")),
+                CupertinoListTile.notched(
+                  // backgroundColor: GlobalVariablesType.backgroundColor!.withOpacity(0.7),
+                  onTap: (){},
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                  leading: const Icon(CupertinoIcons.exclamationmark_bubble),
+                  title: const Text("Need help?")),
+                CupertinoListTile.notched(
+                  // backgroundColor: GlobalVariablesType.backgroundColor!.withOpacity(0.7),
+                  onTap: (){
+                    alertDialogSignOut(context);
+                  },
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                  leading: const Icon(CupertinoIcons.rectangle_expand_vertical),
+                  title: const Text("Sign Out")),
+              ],
+            ),
           ],
         ),
       ),

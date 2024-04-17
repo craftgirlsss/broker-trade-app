@@ -38,38 +38,51 @@ class _MainPageState extends State<MainPage> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items:  <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            activeIcon: Image.asset('assets/icons/home-blue.png'),
-            icon: Image.asset('assets/icons/home-grey.png'),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Image.asset('assets/icons/chart-blue.png'),
-            icon: Image.asset('assets/icons/chart-grey.png'),
-            label: 'Markets',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Image.asset('assets/icons/history-blue.png'),
-            icon: Image.asset('assets/icons/history-grey.png'),
-            label: 'Transactions',
-          ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(CupertinoIcons.profile_circled, color: Colors.blue.shade700),
-            icon: Icon(CupertinoIcons.profile_circled, color: Colors.grey.shade400),
-            label: 'Profiles',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black38,
-        type: BottomNavigationBarType.fixed,
-        unselectedIconTheme: const IconThemeData(color: Colors.black38),
-        unselectedLabelStyle: const TextStyle(color: Colors.black38),
-        showUnselectedLabels: true,
-        selectedLabelStyle: const TextStyle(color: CupertinoColors.activeBlue),
-        showSelectedLabels: true,
-        onTap: _onItemTapped,
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(
+        // sets the background color of the `BottomNavigationBar`
+        canvasColor: GlobalVariablesType.backgroundColor,
+        // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+        primaryColor: Colors.red),
+        child: BottomNavigationBar(
+          items:  <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              activeIcon: Icon(CupertinoIcons.chart_bar_alt_fill, color: Colors.blue.shade700),
+              icon: Icon(CupertinoIcons.chart_bar_alt_fill, color: Colors.grey.shade400),
+              // activeIcon: Image.asset('assets/icons/home-blue.png'),
+              // icon: Image.asset('assets/icons/home-grey.png'),
+              label: 'Markets',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(CupertinoIcons.doc_chart, color: Colors.blue.shade700),
+              icon: Icon(CupertinoIcons.doc_chart, color: Colors.grey.shade400),
+              // activeIcon: Image.asset('assets/icons/chart-blue.png'),
+              // icon: Image.asset('assets/icons/chart-grey.png'),
+              label: 'Orders',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(CupertinoIcons.rocket, color: Colors.blue.shade700),
+              icon: Icon(CupertinoIcons.rocket, color: Colors.grey.shade400),
+              // activeIcon: Image.asset('assets/icons/history-blue.png'),
+              // icon: Image.asset('assets/icons/history-grey.png'),
+              label: 'Feeds',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(CupertinoIcons.profile_circled, color: Colors.blue.shade700),
+              icon: Icon(CupertinoIcons.profile_circled, color: Colors.grey.shade400),
+              label: 'Accounts',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          unselectedItemColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          unselectedIconTheme: const IconThemeData(color: Colors.black38),
+          unselectedLabelStyle: const TextStyle(color: Colors.white),
+          showUnselectedLabels: true,
+          selectedLabelStyle: TextStyle(color:GlobalVariablesType.mainColor),
+          showSelectedLabels: true,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mockup_one/src/components/action_sheet.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
@@ -23,6 +26,28 @@ class _Content1State extends State<Content1> {
   TextEditingController noHPController = TextEditingController();
   TextEditingController birthDateController = TextEditingController();
 
+  // Image Picker from gallery
+  XFile? _imageFile;
+  Future<void> pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _imageFile = pickedFile;
+    });
+  }
+
+  @override
+  void dispose() {
+    emailContrller.dispose();
+    referalCodeController.dispose();
+    idPersonalController.dispose();
+    fullNameContrller.dispose();
+    genderContrller.dispose();
+    noHPController.dispose();
+    birthDateController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,10 +68,10 @@ class _Content1State extends State<Content1> {
                   width: 100,
                   height: 100,
                   padding: const EdgeInsets.all(7),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white10,
-                    image: DecorationImage(image: AssetImage('assets/images/default-picture.png'), fit: BoxFit.cover)
+                    image: _imageFile == null ? const DecorationImage(image: AssetImage('assets/images/empty_image.png'), fit: BoxFit.cover) : DecorationImage(image: FileImage(File(_imageFile!.path)), fit: BoxFit.cover)
                   ),
                 ),
                 Positioned(
@@ -54,7 +79,7 @@ class _Content1State extends State<Content1> {
                   right: 0,
                   child: GestureDetector(
                     onTap: (){
-                      debugPrint("Ditekan");
+                      pickImage();
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),

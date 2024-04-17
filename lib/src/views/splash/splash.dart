@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:mockup_one/src/components/buttons.dart';
 import 'package:mockup_one/src/components/main_variable.dart';
 import 'package:mockup_one/src/components/textstyle.dart';
@@ -14,6 +15,36 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  Future<void> checkForUpdate() async {
+    debugPrint('checking for Update');
+    InAppUpdate.checkForUpdate().then((info) {
+      print("ini info : $info");
+      setState(() {
+        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+          debugPrint('update available');
+          update();
+        }
+      });
+    }).catchError((e) {
+      debugPrint(e.toString());
+    });
+  }
+
+  void update() async {
+    debugPrint('Updating');
+    await InAppUpdate.startFlexibleUpdate();
+    InAppUpdate.completeFlexibleUpdate().then((_) {}).catchError((e) {
+      debugPrint("ini error : ${e.toString()}");
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkForUpdate();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -56,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           })),
                         TextButton(
                           onPressed: () => launchUrls(GlobalVariablesType.termsAndConditions),
-                          child: Text(GlobalVariablesType.termsAndConditionsText, style: kDefaultTextStyleButtonText()) )
+                          child: Text(GlobalVariablesType.termsAndConditionsText, style: kDefaultTextStyleButtonText(color: Colors.white)) )
                       ],
                     ),
                   )

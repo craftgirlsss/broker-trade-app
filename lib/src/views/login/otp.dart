@@ -19,7 +19,7 @@ class OTPPage extends StatefulWidget {
 
 class _OTPPageState extends State<OTPPage> {
   OtpFieldController otpController = OtpFieldController();
-  int secondsRemaining = 60;
+  int secondsRemaining = 5;
   bool enableResend = false;
   Timer? timer;
 
@@ -33,6 +33,7 @@ class _OTPPageState extends State<OTPPage> {
         });
       } else {
         setState(() {
+          timer?.cancel();
           enableResend = true;
         });
       }
@@ -61,7 +62,7 @@ class _OTPPageState extends State<OTPPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                child: Text("Please input OTP Code where we have sent to your WhatsApp number", style: kDefaultTextStyleCustom(fontSize: 15),),
+                child: Text("Please input OTP Code where we have sent to your email address", style: kDefaultTextStyleCustom(fontSize: 15),),
               ),
               const SizedBox(height: 20),   
               Center(
@@ -80,11 +81,11 @@ class _OTPPageState extends State<OTPPage> {
                   outlineBorderRadius: 10,
                   style: kDefaultTextStyleCustom(fontSize: 17),
                   onChanged: (pin) {
-                    print("Changed: " + pin);
+                    debugPrint("Changed: $pin");
                   },
                   onCompleted: (pin) {
                     // otpController.clear();
-                    print("Completed: " + pin);
+                    debugPrint("Completed: $pin");
                   },
                 ),
               ),
@@ -103,7 +104,15 @@ class _OTPPageState extends State<OTPPage> {
               ),
               enableResend ? Center(
                 child: TextButton(
-                  onPressed: enableResend ? resendCode : null,
+                  onPressed: enableResend ? (){
+                    if(mounted){
+                      setState(() {
+                        secondsRemaining = 10;
+                      });
+                      resendCode();
+                    }
+                    // resendCode();
+                  } : null,
                   child: Text("Resend OTP", style: kDefaultTextStyleCustom(fontSize: 16,),),
                 ),
               ) : Container(),
@@ -129,7 +138,7 @@ class _OTPPageState extends State<OTPPage> {
 
   void resendCode() {
     //other code here
-    Timer.periodic(const Duration(seconds: 1), (_) {
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (secondsRemaining != 0) {
         setState(() {
           secondsRemaining--;
@@ -143,7 +152,7 @@ class _OTPPageState extends State<OTPPage> {
     setState((){
       enableResend = false;
     });
-  }
+  }  
   
   @override
   dispose(){

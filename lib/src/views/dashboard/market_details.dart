@@ -51,6 +51,7 @@ class _MarketDetailsState extends State<MarketDetails> {
     return GestureDetector(
       onTap: focusManager,
       child: Scaffold(
+        backgroundColor: GlobalVariablesType.backgroundColor,
         appBar: kDefaultAppBarCustom(
           context,
           title: Container(
@@ -71,7 +72,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                       child: Text("Demo", style: kDefaultTextStyleCustom(color: Colors.white, fontSize: 10, fontWeight: FontWeight.normal),),
                     ),
                     const SizedBox(width: 5),
-                    Text("23729942", style: kDefaultTextStyleCustom(fontWeight: FontWeight.normal, color: Colors.black45),),
+                    Text("23729942", style: kDefaultTextStyleCustom(fontWeight: FontWeight.normal, color: Colors.white),),
                     const Icon(Icons.arrow_drop_down)
                   ],
                 ),
@@ -98,10 +99,10 @@ class _MarketDetailsState extends State<MarketDetails> {
                         child: Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.1)
+                                color: GlobalVariablesType.mainColor
                               ),
                               child: Row(
                                 children: [
@@ -115,7 +116,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.1)
+                                color: GlobalVariablesType.mainColor
                               ),
                               child: const Text("M1"),
                             )
@@ -130,7 +131,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.1)
+                                color: GlobalVariablesType.mainColor
                               ),
                               child: const Icon(CupertinoIcons.function, size: 19, color: Colors.black45),
                             ),
@@ -139,7 +140,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.1)
+                                color: GlobalVariablesType.mainColor
                               ),
                               child: const Icon(Icons.edit_outlined, size: 19, color: Colors.black45),
                             ),
@@ -148,7 +149,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.1)
+                                color: GlobalVariablesType.mainColor
                               ),
                               child: const Icon(Icons.layers_outlined, size: 19, color: Colors.black45),
                             ),
@@ -157,7 +158,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.1)
+                                color: GlobalVariablesType.mainColor
                               ),
                               child: const Icon(CupertinoIcons.settings_solid, size: 19, color: Colors.black45),
                             ),
@@ -168,71 +169,70 @@ class _MarketDetailsState extends State<MarketDetails> {
                   ),
                 ),
                 Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 1.8,
-                color: Colors.transparent,
-                child: SfCartesianChart(
-                  legend: const Legend(isVisible: true),
-                  zoomPanBehavior: _zoomPanBehavior,
-                  plotAreaBorderWidth: 0,
-                  crosshairBehavior: CrosshairBehavior(enable: true),
-                  trackballBehavior: _trackballBehavior,
-                  indicators: [
-                    SmaIndicator<dynamic, dynamic>(
-                      seriesName: 'HiloOpenClose',
-                      period: 4,
-                      signalLineWidth: 0.9, 
-                      valueField: 'close'),
-                    SmaIndicator<dynamic, dynamic>(
-                      seriesName: 'HiloOpenClose',
-                      period: 9,
-                      signalLineColor: Colors.red,
-                      signalLineWidth: 0.9, 
-                      valueField: 'close'),
-                  ],
-                  series: <CandleSeries>[
-                    
-                    CandleSeries<ChartSampleData, DateTime>(
-                      trendlines: [
-                        Trendline(
-                          type: TrendlineType.linear,
-                          
-                        )
-                      ],
-                        dataSource: _chartData,
-                        name: 'HiloOpenClose',
-                        enableSolidCandles: true,
-                        xValueMapper: (ChartSampleData sales, _) => sales.x,
-                        lowValueMapper: (ChartSampleData sales, _) => sales.low,
-                        highValueMapper: (ChartSampleData sales, _) => sales.high,
-                        openValueMapper: (ChartSampleData sales, _) => sales.open,
-                        closeValueMapper: (ChartSampleData sales, _) => sales.close)
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 1.8,
+                  color: Colors.transparent,
+                  child: SfCartesianChart(
+                    legend: Legend(isVisible: true, textStyle: kDefaultTextStyleCustom()),
+                    zoomPanBehavior: _zoomPanBehavior,
+                    plotAreaBorderWidth: 0,
+                    crosshairBehavior: CrosshairBehavior(enable: true),
+                    trackballBehavior: _trackballBehavior,
+                    indicators: [
+                      SmaIndicator<dynamic, dynamic>(
+                        seriesName: 'HiloOpenClose',
+                        period: 4,
+                        signalLineWidth: 0.9, 
+                        valueField: 'close'),
+                      SmaIndicator<dynamic, dynamic>(
+                        seriesName: 'HiloOpenClose',
+                        period: 9,
+                        signalLineColor: Colors.red,
+                        signalLineWidth: 0.9, 
+                        valueField: 'close'),
                     ],
-                    primaryXAxis: DateTimeAxis(
-                      enableAutoIntervalOnZooming: true,
-                      dateFormat: DateFormat.yMMMd(),
-                      interval: 1,
-                      majorGridLines: const MajorGridLines(
-                        // dashArray: <double>[7,7],
-                        width: 1),
+                    series: <CandleSeries>[
+                      CandleSeries<ChartSampleData, DateTime>(
+                        // trendlines: [
+                        //   Trendline(
+                        //     type: TrendlineType.linear,
+                        //   )
+                        // ],
+                          dataSource: _chartData,
+                          name: 'HiloOpenClose',
+                          enableSolidCandles: true,
+                          xValueMapper: (ChartSampleData sales, _) => sales.x,
+                          lowValueMapper: (ChartSampleData sales, _) => sales.low,
+                          highValueMapper: (ChartSampleData sales, _) => sales.high,
+                          openValueMapper: (ChartSampleData sales, _) => sales.open,
+                          closeValueMapper: (ChartSampleData sales, _) => sales.close)
+                      ],
+                      primaryXAxis: DateTimeAxis(
+                        enableAutoIntervalOnZooming: true,
+                        dateFormat: DateFormat.yMMMd(),
+                        interval: 1,
+                        majorGridLines: const MajorGridLines(
+                          dashArray: <double>[7,7],
+                          width: 0.2),
                         ),
-                    enableAxisAnimation: true,
-                    borderColor: Colors.white,
-                    borderWidth: 0,
-                    primaryYAxis:  NumericAxis(
-                      numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
-                      opposedPosition: true,
-                      edgeLabelPlacement: EdgeLabelPlacement.shift,
-                      minimum: 80,
-                      maximum: 130,
-                      interval: 10,
-                      majorGridLines: const MajorGridLines(
-                      //  dashArray: <double>[7,7], 
-                        width: 0.8)
-                    // numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
+                      enableAxisAnimation: true,
+                      // borderColor: Colors.white.withOpacity(0.4),
+                      borderWidth: 0,
+                      primaryYAxis:  NumericAxis(
+                        numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
+                        opposedPosition: true,
+                        edgeLabelPlacement: EdgeLabelPlacement.shift,
+                        minimum: 80,
+                        maximum: 130,
+                        interval: 10,
+                        majorGridLines: const MajorGridLines(
+                        dashArray: <double>[7,7], 
+                          width: 0.2)
+                      // numberFormat: NumberFormat.simpleCurrency(decimalDigits: 0),
+                      ),
                     ),
                   ),
-                ),
+                const SizedBox(height: 20),
                 // button and pending order
                 Container(
                   color: Colors.transparent,
@@ -246,7 +246,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.all(7),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.2)
+                                color: GlobalVariablesType.mainColor.withOpacity(0.6)
                               ),
                               child: Row(
                                 children: [
@@ -267,7 +267,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: GlobalVariablesType.mainColor.withOpacity(0.2)
+                                color: GlobalVariablesType.mainColor.withOpacity(0.8)
                               ),
                               child: const Icon(Icons.notifications, color: Colors.black54),
                             ),
@@ -276,7 +276,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -308,16 +308,18 @@ class _MarketDetailsState extends State<MarketDetails> {
                               margin: const EdgeInsets.symmetric(horizontal: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
-                                color: GlobalVariablesType.mainColor.withOpacity(0.2)
+                                color: GlobalVariablesType.mainColor.withOpacity(0.8)
                               ),
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  IconButton(onPressed: (){}, icon: const Icon(Icons.remove)),
+                                  IconButton(onPressed: (){}, icon: const Icon(Icons.remove, color: Colors.white,)),
                                   Expanded(
-                                    child: Column(                                      
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                    child: Column(  
+
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        const Text("LOTS"),
+                                        Text("LOTS", style: kDefaultTextStyleCustom(color: Colors.white),),
                                         TextField(
                                           textAlign: TextAlign.center,
                                           cursorHeight: 25,
@@ -332,7 +334,7 @@ class _MarketDetailsState extends State<MarketDetails> {
                                       ],
                                     ),
                                   ),
-                                  IconButton(onPressed: (){}, icon: const Icon(Icons.add)),
+                                  IconButton(onPressed: (){}, icon: const Icon(Icons.add, color: Colors.white,)),
                                 ],
                               ),
                             ),
